@@ -1,0 +1,130 @@
+.detail-page {
+  background-color: #fff;
+}
+
+/* Breadcrumb */
+.breadcrumb-section {
+  background-color: #fafafa;
+  border-bottom: 1px solid #eee;
+  padding: 1.5rem 0;
+}
+.breadcrumb-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+.breadcrumb-link {
+  color: #666;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.breadcrumb-link:hover {
+  color: #000;
+}
+.breadcrumb-separator {
+  color: #aaa;
+}
+.breadcrumb-active {
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+}
+
+/* Product Detail */
+.product-detail-section {
+  background-color: #fff;
+}
+
+.image-box {
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: #d946ef !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+}
+
+/* Product Info */
+.product-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.price-section {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.current-price {
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.old-price {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 1.2rem;
+}
+
+.star-rating {
+  color: #facc15;
+  font-size: 1.2rem;
+}
+
+.product-description {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.button-group .btn {
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.add-cart-btn {
+  background-color: #000;
+  border: none;
+}
+.add-cart-btn:hover {
+  background-color: #333;
+}
+
+.out-stock-btn {
+  background-color: #444;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.wishlist-btn {
+  border-color: #000;
+  color: #000;
+}
+.wishlist-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
