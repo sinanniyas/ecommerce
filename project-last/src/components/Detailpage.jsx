@@ -23,7 +23,7 @@ const Detailpage = () => {
   if (!product?._id) return alert("Product not loaded yet!");
 
   try {
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
     const res = await axios.post(`${API_URL}/api/cart/add`, {
       userId,
       productId: product._id,
@@ -41,7 +41,7 @@ const Detailpage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       if (!id) return;
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
       try {
         const res = await axios.get(`${API_URL}/api/products/${id}`);
         setProduct(res.data);

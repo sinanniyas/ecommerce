@@ -93,7 +93,7 @@ useEffect(() => {
         total,
       };
 
-      const res = await fetch("http://localhost:5000/api/orders", {
+      const res = await fetch("https://ecommerce-dcx1.onrender.com/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

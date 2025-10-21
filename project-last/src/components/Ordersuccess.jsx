@@ -13,7 +13,7 @@ export default function Ordersuccess() {
     // Fetch the latest order from backend
     const fetchLatestOrder = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/orders");
+        const res = await axios.get("https://ecommerce-dcx1.onrender.com/api/orders");
         if (res.data && res.data.length > 0) {
           // Assuming the last order is the latest one
           setOrder(res.data[res.data.length - 1]);

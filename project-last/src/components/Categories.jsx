@@ -22,7 +22,7 @@ export default function CategoriesPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
         const res = await axios.get(`${API_URL}/api/categories`);
         setCategories(res.data);
       } catch (err) {

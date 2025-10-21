@@ -20,7 +20,7 @@ export default function PopularProducts() {
   const { addToCart } = useContext(CartContext); // ✅ get addToCart from context
   const user = JSON.parse(localStorage.getItem("user")); // get logged-in user
   const userId = user?.id;
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
   const { addToWishlist, removeFromWishlist, wishlist } =
     useContext(WishlistContext);
 

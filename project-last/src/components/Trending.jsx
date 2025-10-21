@@ -25,7 +25,7 @@ export default function TrendingProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
         const res = await axios.get(
           `${API_URL}/api/products/category/Trending`
         );
@@ -38,7 +38,7 @@ export default function TrendingProducts() {
   }, []);
 
   const [userId, setUserId] = useState("64f...."); // replace with actual logged-in user ID
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
 
   const handleAddToCart = async (productId) => {
     try {

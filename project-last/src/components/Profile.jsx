@@ -13,7 +13,7 @@ export default function Profile() {
       try {
         console.log("Fetching orders for user ID:", user.id);
         const res = await axios.get(
-          `http://localhost:5000/api/orders/user/${user.id}`
+          `https://ecommerce-dcx1.onrender.com/api/orders/user/${user.id}`
         );
         console.log("Orders received:", res.data);
         setOrders(res.data);
