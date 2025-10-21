@@ -98,7 +98,7 @@ function BasicExample() {
                 </>
               ) : (
                 <>
-                  <NavDropdown.Item onClick={gotoprofile}>Hello, {user.name}</NavDropdown.Item>
+                  <NavDropdown.Item onClick={gotoprofile}>profile</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                 </>
