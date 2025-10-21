@@ -15,7 +15,7 @@ const Category = () => {
   // Fetch categories from backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/categories")
+      .get("https://ecommerce-dcx1.onrender.com/api/categories")
       .then((res) => setCategories(res.data))
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
@@ -25,7 +25,7 @@ const Category = () => {
     if (!window.confirm("Are you sure you want to delete this category?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await axios.delete(`https://ecommerce-dcx1.onrender.com/api/categories/${id}`);
       setCategories(categories.filter((c) => c._id !== id));
     } catch (err) {
       console.error("Error deleting category:", err);

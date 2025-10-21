@@ -9,7 +9,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/orders");
+        const res = await axios.get("https://ecommerce-dcx1.onrender.com/api/orders");
         setOrders(res.data);
       } catch (err) {
         console.error("Error fetching orders:", err);
@@ -30,7 +30,7 @@ const Orders = () => {
     const orderId = orders[index]._id;
 
     try {
-      await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, {
+      await axios.put(`https://ecommerce-dcx1.onrender.com/api/orders/${orderId}/status`, {
         status: newStatus,
       });
       console.log(`Order ${orderId} updated to ${newStatus}`);

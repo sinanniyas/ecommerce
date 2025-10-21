@@ -26,7 +26,7 @@ const Editform = () => {
   // Fetch existing product
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`https://ecommerce-dcx1.onrender.com/api/products/${id}`)
       .then((res) => {
         setFormData({
           name: res.data.name || "",
@@ -46,7 +46,7 @@ const Editform = () => {
   // Fetch categories from backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/categories") // adjust to your category route
+      .get("https://ecommerce-dcx1.onrender.com/api/categories") // adjust to your category route
       .then((res) => setCategories(res.data))
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
@@ -76,7 +76,7 @@ const Editform = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/api/products/${id}`, formData)
+      .put(`https://ecommerce-dcx1.onrender.com/api/products/${id}`, formData)
       .then((res) => {
         console.log("Updated product:", res.data);
         navigate("/grocery");

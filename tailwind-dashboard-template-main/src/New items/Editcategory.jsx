@@ -18,7 +18,7 @@ const EditCategory = () => {
   // Fetch category details
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/categories/${id}`)
+      .get(`https://ecommerce-dcx1.onrender.com/api/categories/${id}`)
       .then((res) => setFormData({
         name: res.data.name || "",
         description: res.data.description || "",
@@ -52,7 +52,7 @@ const EditCategory = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/api/categories/${id}`, formData)
+      .put(`https://ecommerce-dcx1.onrender.com/api/categories/${id}`, formData)
       .then((res) => {
         console.log("Updated category:", res.data);
         navigate("/category"); // go back to category list

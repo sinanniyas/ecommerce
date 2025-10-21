@@ -21,7 +21,7 @@ const GroceryForm = () => {
   // Fetch categories on component mount
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/categories") // adjust this route to your backend
+      .get("https://ecommerce-dcx1.onrender.com/api/categories") // adjust this route to your backend
       .then((res) => setCategories(res.data))
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
@@ -53,7 +53,7 @@ const GroceryForm = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/products", { ...formData, image })
+      .post("https://ecommerce-dcx1.onrender.com/api/products", { ...formData, image })
       .then((res) => {
         alert("✅ Grocery item created successfully!");
         console.log(res.data);

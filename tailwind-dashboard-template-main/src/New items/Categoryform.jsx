@@ -34,7 +34,7 @@ const Categoryform = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/categories", formData)
+      .post("https://ecommerce-dcx1.onrender.com/api/categories", formData)
       .then((res) => {
         alert("Category created successfully!");
         setFormData({ name: "", description: "", image: "" }); // reset form
