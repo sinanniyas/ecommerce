@@ -1,33 +1,69 @@
- .nav-link {
-          color: #495057 !important;
-          font-weight: 500;
-          transition: color 0.3s ease;
-        }
-        
-        .nav-link:hover {
-          color: #000 !important;
-        }
-        
-        .navbar-brand {
-          color: #000 !important;
-        }
-        
-        .dropdown-toggle::after {
-          margin-left: 0.3rem;
-          vertical-align: 0.15em;
-        }
-        
-        .dropdown-menu {
-          border: 1px solid #e9ecef;
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        
-        .dropdown-item {
-          padding: 0.5rem 1.5rem;
-          transition: background-color 0.3s ease;
-        }
-        
-        .dropdown-item:hover {
-          background-color: #f8f9fa;
-          color: #000;
-        }
+.nav-link {
+  color: #495057 !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #000 !important;
+}
+
+.navbar-brand {
+  color: #000 !important;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.3rem;
+  vertical-align: 0.15em;
+}
+
+.dropdown-menu {
+  border: 1px solid #e9ecef;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #000;
+}
+/* fix dropdown alignment */
+#shop-dropdown .dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  min-width: 200px;
+  margin-top: 0.7rem;
+}
+
+/* make dropdown wider & cleaner for more premium look */
+#shop-dropdown .dropdown-item {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+}
+
+/* mobile device spacing fix */
+@media (max-width: 767px) {
+  #shop-dropdown .dropdown-menu {
+    left: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .navbar-nav .nav-link,
+  .navbar-nav .dropdown-toggle {
+    padding: 0.9rem 0 !important;
+    font-size: 1.05rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+  }
+}

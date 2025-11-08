@@ -9,7 +9,7 @@ const Detailpage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useContext(CartContext);
+  useContext(CartContext);
 
   // Fetch user inside useEffect to make sure it's read correctly
   const [userId, setUserId] = useState(null);

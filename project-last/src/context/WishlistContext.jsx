@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -5,55 +6,45 @@ export const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user?.id;
   const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
+  const token = localStorage.getItem("token");
 
-  // Fetch wishlist on mount
   useEffect(() => {
-    if (!userId) return;
+    if (!token) return;
     const fetchWishlist = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/wishlist/${userId}`);
+        const res = await axios.get(`${API_URL}/api/wishlist`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setWishlist(res.data);
       } catch (err) {
-        console.error("Error fetching wishlist:", err);
+        console.error(err);
       }
     };
     fetchWishlist();
-  }, [userId]);
+  }, [token]);
 
-  // Add item
   const addToWishlist = async (productId) => {
-    if (!userId) return alert("Please log in to add to wishlist");
-    try {
-      const res = await axios.post(`${API_URL}/api/wishlist/add`, {
-        userId,
-        productId,
-      });
-      setWishlist(res.data.wishlist);
-    } catch (err) {
-      console.error("Error adding to wishlist:", err);
-    }
+    if (!token) return alert("Please login first");
+    const res = await axios.post(
+      `${API_URL}/api/wishlist/add`,
+      { productId },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setWishlist(res.data.wishlist);
   };
 
-  // Remove item
   const removeFromWishlist = async (productId) => {
-    try {
-      const res = await axios.post(`${API_URL}/api/wishlist/remove`, {
-        userId,
-        productId,
-      });
-      setWishlist(res.data.wishlist);
-    } catch (err) {
-      console.error("Error removing from wishlist:", err);
-    }
+    const res = await axios.post(
+      `${API_URL}/api/wishlist/remove`,
+      { productId },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setWishlist(res.data.wishlist);
   };
 
   return (
-    <WishlistContext.Provider
-      value={{ wishlist, addToWishlist, removeFromWishlist }}
-    >
+    <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist }}>
       {children}
     </WishlistContext.Provider>
   );

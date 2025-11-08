@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -5,68 +6,54 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user?.id;
   const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
+  const token = localStorage.getItem("token");
 
-  // Fetch cart on mount
   useEffect(() => {
-    if (!userId) return;
+    if (!token) return;
     const fetchCart = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/cart/${userId}`);
+        const res = await axios.get(`${API_URL}/api/cart`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setCart(res.data);
       } catch (err) {
-        console.error("Error fetching cart:", err);
+        console.error(err);
       }
     };
     fetchCart();
-  }, [userId]);
+  }, [token]);
 
-  // Add item to cart
   const addToCart = async (productId, quantity = 1) => {
-    if (!userId) return alert("Please log in to add products");
-    try {
-      const res = await axios.post(`${API_URL}/api/cart/add`, {
-        userId,
-        productId,
-        quantity,
-      });
-      setCart(res.data.cart);
-    } catch (err) {
-      console.error("Error adding to cart:", err);
-    }
+    if (!token) return alert("Please login first");
+    const res = await axios.post(
+      `${API_URL}/api/cart/add`,
+      { productId, quantity },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setCart(res.data.cart);
   };
 
-  // Update quantity
   const updateQty = async (productId, quantity) => {
-    try {
-      const res = await axios.post(`${API_URL}/api/cart/update`, {
-        userId,
-        productId,
-        quantity,
-      });
-      setCart(res.data.cart);
-    } catch (err) {
-      console.error("Error updating quantity:", err);
-    }
+    const res = await axios.post(
+      `${API_URL}/api/cart/update`,
+      { productId, quantity },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setCart(res.data.cart);
   };
 
-  // Remove item
   const removeFromCart = async (productId) => {
-    try {
-      const res = await axios.post(`${API_URL}/api/cart/remove`, {
-        userId,
-        productId,
-      });
-      setCart(res.data.cart);
-    } catch (err) {
-      console.error("Error removing item:", err);
-    }
+    const res = await axios.post(
+      `${API_URL}/api/cart/remove`,
+      { productId },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setCart(res.data.cart);
   };
 
   return (
-    <CartContext.Provider value={{ cart,setCart, addToCart, updateQty, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateQty, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

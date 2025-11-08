@@ -11,6 +11,8 @@ import CheckoutPage from './components/Buypage';
 import Ordersuccess from './components/Ordersuccess';
 import Profile from './components/Profile';
 import WishlistPage from './components/Wishlist';
+import About from './pages/About';
+import AllProducts from './components/Allproducts';
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
         <Route path='/ordersuccess'element={<Ordersuccess/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/wishlist" element={<WishlistPage/>} />
+        <Route path='/about' element={<About/>}/>
+        <Route path='/all' element={<AllProducts/>}/>
         </Route> 
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='register' element={<RegisterPage/>}/>

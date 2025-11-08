@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css"; // same CSS file used for login
+import "./Login.css";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -20,8 +20,10 @@ const RegisterPage = () => {
 
     try {
       const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
+
       await axios.post(`${API_URL}/api/auth/register`, formData);
 
+      setLoading(false);
       navigate("/login"); // redirect to login after successful register
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
@@ -31,7 +33,6 @@ const RegisterPage = () => {
 
   return (
     <div className="login-page">
-      {/* Breadcrumb */}
       <div className="breadcrumb-section">
         <Container>
           <div className="breadcrumb-content">
@@ -42,7 +43,6 @@ const RegisterPage = () => {
         </Container>
       </div>
 
-      {/* Register Container */}
       <Container className="login-container">
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
@@ -92,11 +92,7 @@ const RegisterPage = () => {
                   />
                 </Form.Group>
 
-                <Button
-                  type="submit"
-                  className="login-button"
-                  disabled={loading}
-                >
+                <Button type="submit" className="login-button" disabled={loading}>
                   {loading ? "Registering..." : "REGISTER"}
                 </Button>
               </Form>

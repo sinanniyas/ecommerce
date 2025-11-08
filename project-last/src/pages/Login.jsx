@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -20,11 +20,28 @@ const LoginPage = () => {
 
     try {
       const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
+
+      // Login request
       const res = await axios.post(`${API_URL}/api/auth/login`, formData);
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/");
+      const { token, user } = res.data;
+
+      // Store token & user
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // Fetch cart & wishlist using token
+      const headers = { Authorization: `Bearer ${token}` };
+      const [cartRes, wishlistRes] = await Promise.all([
+        axios.get(`${API_URL}/api/cart`, { headers }),
+        axios.get(`${API_URL}/api/wishlist`, { headers }),
+      ]);
+
+      localStorage.setItem("cart", JSON.stringify(cartRes.data));
+      localStorage.setItem("wishlist", JSON.stringify(wishlistRes.data));
+
+      setLoading(false);
+      navigate("/"); // redirect to home
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
       setLoading(false);
@@ -82,11 +99,7 @@ const LoginPage = () => {
                   />
                 </Form.Group>
 
-                <Button
-                  type="submit"
-                  className="login-button"
-                  disabled={loading}
-                >
+                <Button type="submit" className="login-button" disabled={loading}>
                   {loading ? "LOGGING IN..." : "LOGIN"}
                 </Button>
               </Form>
