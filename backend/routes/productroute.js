@@ -13,30 +13,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET all products  <-- 1st
-router.get("/", async (req, res) => {
-  try {
-    const product = await Product.find();
-    res.json(product);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-
-
-// category filter   <-- 3rd
-router.get("/category/:categoryName", async (req, res) => {
-  try {
-    const categoryName = req.params.categoryName;
-    const products = await Product.find({ category: categoryName });
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Search products by name
+// SEARCH products by name
 router.get("/search/:query", async (req, res) => {
   try {
     const q = req.params.query.toLowerCase();
@@ -47,7 +24,28 @@ router.get("/search/:query", async (req, res) => {
   }
 });
 
-// Get single product by ID
+// CATEGORY filter
+router.get("/category/:categoryName", async (req, res) => {
+  try {
+    const categoryName = req.params.categoryName;
+    const products = await Product.find({ category: categoryName });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET all products
+router.get("/", async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET single product by ID
 router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -57,3 +55,5 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+module.exports = router;
