@@ -71,6 +71,7 @@ function BasicExample() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser(null);
+    navigate("/");
   };
 
   const gotowish = () => navigate("/wishlist");
@@ -85,7 +86,11 @@ function BasicExample() {
           Flone.
         </Navbar.Brand>
 
+        {/* MOBILE TOGGLE */}
+        <Navbar.Toggle aria-controls="flone-navbar-nav" />
+
         <Navbar.Collapse id="flone-navbar-nav" className="mt-3 mt-lg-0">
+          {/* LINKS */}
           <Nav className="mx-auto text-center">
             <Nav.Link href="/" className="py-2">Home</Nav.Link>
             <NavDropdown title="Shop" id="shop-dropdown">
@@ -93,21 +98,20 @@ function BasicExample() {
               <NavDropdown.Item href="/category/Trending">Trending products</NavDropdown.Item>
               <NavDropdown.Item href="/all">Product Details</NavDropdown.Item>
             </NavDropdown>
-          
             <Nav.Link href="/about" className="py-2">About</Nav.Link>
           </Nav>
 
           {/* SEARCH */}
-          <div ref={dropdownRef} style={{ position: "relative", width: "300px" }} className="mx-auto">
+          <div ref={dropdownRef} style={{ position: "relative", width: "100%", maxWidth: "300px" }} className="mx-auto my-2 my-lg-0">
             <InputGroup>
               <FormControl
                 placeholder="Search products or categories..."
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
-                  setShowDropdown(true); // always show dropdown when typing
+                  setShowDropdown(true);
                 }}
-                onFocus={() => setShowDropdown(true)} // show dropdown on focus
+                onFocus={() => setShowDropdown(true)}
               />
               <InputGroup.Text>
                 <FiSearch />
@@ -160,7 +164,7 @@ function BasicExample() {
           </div>
 
           {/* USER ICONS */}
-          <Nav className="d-none d-lg-flex align-items-center ms-3">
+          <Nav className="d-flex align-items-center ms-3 mt-2 mt-lg-0">
             <Nav.Link className="px-2 position-relative" onClick={gotowish}>
               <FiHeart size={20} />
               <Badge
