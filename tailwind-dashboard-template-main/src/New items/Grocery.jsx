@@ -28,11 +28,11 @@ const Grocery = () => {
   };
 
   // Filter products based on search
-  const filteredProducts = products.filter(
-    (p) =>
-      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+ const filteredProducts = products.filter(
+  (p) =>
+    p?.name?.toLowerCase()?.includes(searchTerm.toLowerCase()) ||
+    p?.category?.toLowerCase()?.includes(searchTerm.toLowerCase())
+);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
