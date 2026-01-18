@@ -37,23 +37,10 @@ export default function TrendingProducts() {
     fetchProducts();
   }, []);
 
-  const [userId, setUserId] = useState("64f...."); // replace with actual logged-in user ID
+ // replace with actual logged-in user ID
   const API_URL = import.meta.env.VITE_API_URL || "https://ecommerce-dcx1.onrender.com";
 
-  const handleAddToCart = async (productId) => {
-    try {
-      const res = await axios.post(`${API_URL}/api/cart/add`, {
-        userId,
-        productId,
-        quantity: 1,
-      });
-      if (res.data.success) {
-        alert("Added to cart!");
-      }
-    } catch (err) {
-      console.error("Error adding to cart:", err);
-    }
-  };
+ 
 
   const scroll = (direction) => {
     const container = scrollContainerRef.current;

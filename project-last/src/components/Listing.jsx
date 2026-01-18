@@ -33,9 +33,10 @@ export default function Listing() {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter(
-    (product) => product.category.toLowerCase() === name.toLowerCase()
-  );
+  const filteredProducts = products.filter((product) =>
+  (product.category ?? "").toLowerCase() === (name ?? "").toLowerCase()
+);
+
 
   const Handleclick = (id) => navigate(`/products/${id}`);
 
